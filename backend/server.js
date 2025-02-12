@@ -1,5 +1,10 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
+
 const app = express();
 const port = 4000;
 
@@ -17,6 +22,34 @@ app.post('/', (req, res) => {
     console.log('Name:', fullName || "Name not retrived properly");
     res.status(200).send("Feedback submitted successfully");
 })
+
+
+const trnasporter = nodemailer.createTransport({
+    host: 'smtp.zoho.com',
+    port: 456,
+    secure: true,
+    auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+    },
+});
+
+// Email Options
+const mailOptions = (recepient, subject, body,  ) => {
+    from: process.env.SMTP_SENDER,
+    to: recepient,
+    subject: subject,
+    html
+}
+
+
+
+
+
+
+
+
+
 
 
 app.listen(port, () => {
