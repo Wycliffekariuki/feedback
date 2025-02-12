@@ -1,8 +1,13 @@
 import './App.css';
-import Feedback from './components/Feedback.tsx';
+import Feedback from './components/Feedback.js';
 function App() {
+  
   return (
-<Feedback />
+    <div>
+      <h1>Feedback Page</h1>
+      <Feedback />
+    </div>
+
   );
 };
 
