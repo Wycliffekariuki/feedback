@@ -1,12 +1,9 @@
-import { useForm } from 'react-hook-form';
-import Feedback from './components/Feedback';
 import './App.css';
-
+import Feedback from './components/Feedback.tsx';
 function App() {
   return (
-    <Feedback />
-    
+<Feedback />
   );
-}
+};
 
 export default App;
