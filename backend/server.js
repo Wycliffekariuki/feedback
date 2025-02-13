@@ -83,9 +83,9 @@ const recordFeedback = async (feedbackAll) => {
         const sql = "INSERT INTO Optiven (name, phone, email, subject, message) VALUES ($1, $2, $3, $4, $5) RETURNING *";
         const values = [feedbackAll.fullName, feedbackAll.phoneNumber, feedbackAll.email, feedbackAll.subject, feedbackAll.message];
         const result = await query(sql, values);
-        if (result.rows > 0)  {
+        if (result.rows.length > 0) {
             console.log("Feedback recorded successfully:", result.rows[0]);
-        }else {
+        } else {
             console.log("Feedback insert failed");
         }
     } catch (error) {
