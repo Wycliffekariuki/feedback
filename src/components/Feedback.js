@@ -60,6 +60,16 @@ const Feedback = () => {
         {errors.email && <p>{errors.email.message}</p>}
       </div>
 
+
+      <div>
+        <label htmlFor="subject">Feedback title</label>
+        <textarea
+          id="subject"
+          {...register("subject", { required: "Subject is required" })}
+        />
+        {errors.subject && <p>{errors.subject.message}</p>}
+      </div>
+
       <div>
         <label htmlFor="feedback">Give us your feedback</label>
         <textarea
