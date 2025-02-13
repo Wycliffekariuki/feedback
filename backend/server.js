@@ -35,12 +35,12 @@ const trnasporter = nodemailer.createTransport({
 });
 
 // Email Options
-const mailOptions = (recepient, subject, body,  ) => {
+const mailOptions = {
     from: process.env.SMTP_SENDER,
-    to: recepient,
-    subject: subject,
-    html
-}
+    to: 'cleofordklumurd@gmail.com',
+    subject: 'This is a test subject',
+    text: 'This is a test email sent to Zoho Mail uisng Nodemailer.',
+};
 
 
 
