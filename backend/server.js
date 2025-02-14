@@ -28,6 +28,14 @@ app.post('/', (req, res) => {
     console.log('Body:', feedback || "Body not retrived properly");
     */
    try {
+    const feedbackAll = {
+        fullName,
+        phoneNumber,
+        email, 
+        subject,
+        feedback
+    }
+    console.log(feedbackAll);
     const mailOptions = {
         from: process.env.SMTP_SENDER,
         to: email,
@@ -35,6 +43,7 @@ app.post('/', (req, res) => {
         text: feedback,
     };
     const transporter = transporterCreate();
+    recordFeedback(feedbackAll);
 
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -81,7 +90,7 @@ const recordFeedback = async (feedbackAll) => {
     
     try {
         const sql = "INSERT INTO Optiven (name, phone, email, subject, message) VALUES ($1, $2, $3, $4, $5) RETURNING *";
-        const values = [feedbackAll.fullName, feedbackAll.phoneNumber, feedbackAll.email, feedbackAll.subject, feedbackAll.message];
+        const values = [feedbackAll.fullName, feedbackAll.phoneNumber, feedbackAll.email, feedbackAll.subject, feedbackAll.feedback];
         const result = await query(sql, values);
         if (result.rows.length > 0) {
             console.log("Feedback recorded successfully:", result.rows[0]);
